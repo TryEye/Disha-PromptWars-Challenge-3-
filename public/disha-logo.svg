@@ -1,0 +1,25 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Disha logo</title>
+  <desc id="desc">A green triangular mountain mark with a winding path and leaf.</desc>
+  <defs>
+    <linearGradient id="ridge" x1="34" y1="145" x2="126" y2="16" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0b3d2e"/>
+      <stop offset="1" stop-color="#78b82f"/>
+    </linearGradient>
+    <linearGradient id="mountain" x1="42" y1="130" x2="113" y2="42" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#052f25"/>
+      <stop offset="1" stop-color="#064737"/>
+    </linearGradient>
+    <linearGradient id="hill" x1="33" y1="111" x2="137" y2="144" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#72aa35"/>
+      <stop offset="1" stop-color="#285f2a"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M25 140L80 14L135 140H121L80 47L39 140H25Z" fill="url(#ridge)"/>
+  <path d="M41 123L72 58L87 86L96 68L124 124H41Z" fill="url(#mountain)"/>
+  <path d="M27 140C54 112 88 109 135 140H27Z" fill="url(#hill)"/>
+  <path d="M78 122C96 103 63 95 80 74C88 64 97 56 95 45C106 58 103 68 92 80C75 99 111 103 92 124C85 132 78 138 73 146H52C62 138 70 130 78 122Z" fill="white"/>
+  <path d="M43 129C38 112 49 96 69 91C67 111 57 124 43 129Z" fill="white"/>
+  <path d="M45 124C54 113 59 105 65 96" stroke="#1f7a3a" stroke-width="3" stroke-linecap="round"/>
+</svg>
