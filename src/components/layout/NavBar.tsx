@@ -2,63 +2,44 @@
 
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { Leaf } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
-  { id: "dashboard", label: "Dashboard" },
-  { id: "journey", label: "Journey" },
-  { id: "coach", label: "AI Coach" },
-  { id: "leaderboard", label: "Leaderboard" },
+  { href: "/", label: "Dashboard" },
+  { href: "/journey", label: "Journey" },
+  { href: "/coach", label: "AI Coach" },
+  { href: "/leaderboard", label: "Leaderboard" },
 ] as const;
-
-type NavItemId = (typeof NAV_ITEMS)[number]["id"];
 
 /**
  * Fixed navigation bar with active section highlighting and logo.
  */
 export function NavBar() {
   const prefersReducedMotion = useReducedMotion() ?? false;
-  const [activeId, setActiveId] = React.useState<NavItemId>("dashboard");
-
-  React.useEffect(() => {
-    const getIdFromHash = (): NavItemId | null => {
-      const hash = window.location.hash.replace("#", "");
-      return NAV_ITEMS.some((item) => item.id === hash) ? (hash as NavItemId) : null;
-    };
-
-    const syncHash = () => {
-      setActiveId(getIdFromHash() ?? "dashboard");
-    };
-
-    syncHash();
-    window.addEventListener("hashchange", syncHash);
-
-    return () => {
-      window.removeEventListener("hashchange", syncHash);
-    };
-  }, []);
+  const pathname = usePathname();
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/8 bg-black/40 backdrop-blur-[20px]">
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#dashboard" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <Image src="/disha-logo.svg" alt="Disha logo" width={32} height={32} priority />
           <span className="text-sm font-semibold tracking-[0.12em] text-text-primary uppercase">
             Disha
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-2 md:flex">
           {NAV_ITEMS.map((item) => {
-            const isActive = activeId === item.id;
+            const isActive = pathname === item.href;
 
             return (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={() => setActiveId(item.id)}
+              <Link
+                key={item.href}
+                href={item.href}
                 className={cn(
                   "relative rounded-full px-4 py-2 text-sm font-medium text-text-secondary transition-colors hover:text-text-primary",
                   isActive && "text-text-primary",
@@ -73,7 +54,7 @@ export function NavBar() {
                   />
                 ) : null}
                 {item.label}
-              </a>
+              </Link>
             );
           })}
         </nav>
